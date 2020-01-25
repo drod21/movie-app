@@ -1,6 +1,6 @@
 import { IMovie, IRating } from "./IMovie";
 
-export class Movie implements IMovie {
+export default class Movie implements IMovie {
   actors: string = ''
   genre: string = ''
   imdbId: string = ''
