@@ -1,8 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import logo from '../../assets/images/logo.svg';
+import './home.css'
 
-const App: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -17,10 +17,10 @@ const App: React.FC = () => {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+            </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default Home
