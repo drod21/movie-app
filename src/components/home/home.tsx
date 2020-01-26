@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import MovieService from '../../services'
+import { Movie } from '../../models';
+
 import logo from '../../assets/images/logo.svg';
 import '../../assets/styles/components/home/home.css'
 
 const Home: React.FC = () => {
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalResults, setTotalResults] = useState(0)
+  const [currPage, setCurrPage] = useState(1)
+  const movieService = new MovieService()
+
+  useEffect(() => {
+    const movies: Promise<Array<Movie>> = movieService.getMovies().then((res: any) => {
+      setCurrPage(res.page)
+      setTotalResults(res.total_results)
+      setTotalPages(res.total_pages)
+
+      return res.results.map(m => new Movie(m))
+    })
+  }, [movieService])
+  
   return (
     <div className="App">
       <header className="App-header">

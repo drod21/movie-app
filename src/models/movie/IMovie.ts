@@ -1,19 +1,14 @@
 export interface IMovie {
-  actors: string,
-  genre: string,
-  imdbId: string,
-  metascore: number,
-  plot: string,
-  poster: URL,
-  ratings: Array<IRating>,
-  released: Date,
+  backdropPath: string,
+  genreIds: Array<number>,
+  id: number,
+  isAdult: boolean,
+  overview: string,
+  popularity: number,
+  posterPath: string,
+  releaseDate: Date,
   title: string,
-  type: string,
-  year: string,
-  writer: string
-}
-
-export interface IRating {
-  Source: string,
-  Value: string
+  voteAverage: number,
+  voteCount: number,
+  video: boolean,
 }
