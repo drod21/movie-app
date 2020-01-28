@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, RouteComponentProps } from 'react-router-dom';
-import MovieService from 'services';
+import { MovieService } from 'services';
 import store from 'store';
 import { Home } from 'views/home';
 

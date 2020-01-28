@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
-import MovieService from 'services'
+import { MovieService } from 'services'
 import { Movie } from 'models';
 
 import logo from 'assets/images/logo.svg';
