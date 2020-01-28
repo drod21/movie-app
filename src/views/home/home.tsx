@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import MovieService from '../../services'
-import { Movie } from '../../models';
+import { RouteComponentProps } from 'react-router-dom';
+import MovieService from 'services'
+import { Movie } from 'models';
 
-import logo from '../../assets/images/logo.svg';
-import '../../assets/styles/components/home/home.css'
+import logo from 'assets/images/logo.svg';
+import 'assets/styles/css/home.css'
 
-const Home: React.FC = () => {
+export interface Props extends RouteComponentProps {
+  movieService: MovieService
+}
+
+interface MovieResponse {
+  page: number,
+  results: Array<Movie>
+  total_pages: number,
+  total_results: number,
+}
+
+const Home: React.FC<Props> = (props: Props) => {
   const [totalPages, setTotalPages] = useState(0)
   const [totalResults, setTotalResults] = useState(0)
   const [currPage, setCurrPage] = useState(1)
-  const movieService = new MovieService()
+  const [movies, setMovies] = useState([])
 
   useEffect(() => {
-    const movies: Promise<Array<Movie>> = movieService.getMovies().then((res: any) => {
+    props.movieService.getMovies().then((res: MovieResponse) => {
       setCurrPage(res.page)
       setTotalResults(res.total_results)
       setTotalPages(res.total_pages)
-
-      return res.results.map(m => new Movie(m))
+      setMovies(res.results.map(m => new Movie(m)))
     })
-  }, [movieService])
-  
+  }, [props.movieService])
+
   return (
     <div className="App">
       <header className="App-header">

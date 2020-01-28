@@ -1,7 +1,5 @@
 import { axios } from '../config'
-import { IMovie } from '../models/movie/IMovie'
 import { AxiosRequestConfig } from 'axios'
-import { Movie } from '../models'
 
 export class MovieService {
   private _API_KEY: string = '5be5ee30'
