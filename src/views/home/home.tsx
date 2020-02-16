@@ -17,20 +17,18 @@ interface MovieResponse {
   total_results: number,
 }
 
-const Home: React.FC<Props> = (props: Props) => {
-  const [totalPages, setTotalPages] = useState(0)
-  const [totalResults, setTotalResults] = useState(0)
-  const [currPage, setCurrPage] = useState(1)
+const Home: React.FC<Props> = (props) => {
   const [movies, setMovies] = useState([])
+  useEffect(() => {
+    props.movieService.getMovies().then((res: Array<Movie>) => setMovies(res))
+  }, [props.movieService])
 
   useEffect(() => {
-    props.movieService.getMovies().then((res: MovieResponse) => {
-      setCurrPage(res.page)
-      setTotalResults(res.total_results)
-      setTotalPages(res.total_pages)
-      setMovies(res.results.map(m => new Movie(m)))
-    })
-  }, [props.movieService])
+    if(movies.length) {
+      console.log(movies)
+      console.log(props.movieService.getMoreMovies())
+    }
+  }, [movies])
 
   return (
     <div className="App">
